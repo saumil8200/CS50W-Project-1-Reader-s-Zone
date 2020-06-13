@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+  {% block head %}
+      <title>
+          Reader's Zone
+      </title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+      <!-- Fonts -->
+      <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500&display=swap" rel="stylesheet"> 
+
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      
+      <!-- CSS -->
+      <link rel="stylesheet" href="{{ url_for('static', filename='welcome.css') }}">
+  {% endblock %}
+{% block body %}
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Reader's Zone</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+            </li>
+        </ul>
+        <span class="navbar-button">
+            <a class="nav-link" href="{{ url_for('welcome') }}">Log Out</a>
+        </span>  
+        </div>
+    </nav>
+
+    <!-- Welcome -->
+  <div class="intro">
+    <h1>
+        Welcome {{ username }}
+    </h1>
+    <p class="lead">
+      Explore the huge library of books at your own ease at any time on your device :)<br>
+    </p>
+    <hr class="my-4">
+    <p>
+      Register Yourself ASAP!..
+    </p>
+    <p class="lead">
+      <a class="btn btn-primary btn-sm" href="{{ url_for('welcome') }}" role="button">Log Out</a>
+    </p>
+{% endblock %}

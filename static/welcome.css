@@ -1,0 +1,32 @@
+body {
+    background-color: #f5f5f5;
+}
+
+h1 {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.logo {
+    width: auto;
+    height: 100px;
+    margin: 40px;
+    float: right;
+}
+
+.intro {
+    margin: 40px;
+    padding: 20px;
+    font-family: 'Fira Sans', sans-serif;
+    text-align: center;
+}
+
+.lead {
+    font-size: 1em;
+}
+
+nav {
+	font-family: 'PT Sans', sans-serif;
+	padding: 60px;
+}
+
+

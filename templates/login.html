@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block head %}
+    <title>
+        Login
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500&display=swap" rel="stylesheet"> 
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+{% endblock %}
+{% block body %}
+
+    <!-- Registration Form -->
+    <div class="register">
+        <form action="/login" method="POST">
+            <table>
+                <tr>
+                    <th colspan="2">
+                        <img class="logo" src="static/img/books.png" alt="books" width="auto" height="150px">
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="2"><h2>Login to Reader's Zone</h2></th>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td class="input"><input type="text" name="username" placeholder="Enter Your Username" required></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td class="input"><input type="password" name="password" placeholder="Enter Your Password" required></td>
+                </tr>
+                <tr>
+                    <th colspan="2"><input class="button" type="submit" name="submit" value="Login"> </th>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+{% endblock %}
