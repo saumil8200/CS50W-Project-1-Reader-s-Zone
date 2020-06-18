@@ -1,0 +1,21 @@
+td, th {
+    font-family: 'Fira Sans', sans-serif;
+}
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+}
+
+nav {
+	font-family: 'PT Sans', sans-serif;
+	padding: 60px;
+}
+
+h1{
+    font-family: 'MuseoModerno', cursive;
+    color: #ae52ff;
+}
+
+.section {
+    text-align: center;
+}

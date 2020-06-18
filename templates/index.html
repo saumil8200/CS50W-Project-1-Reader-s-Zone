@@ -20,7 +20,7 @@
 {% block body %}
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!--nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Reader's Zone</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -38,6 +38,32 @@
             <a class="nav-link" href="{{ url_for('welcome') }}">Log Out</a>
         </span>  
         </div>
+    </nav-->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand">Reader's Zone</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+          {% if session["user"] %}
+      <form action="/search" method="POST" class="form-inline">
+        <input class="form-control form-control-sm" id="getinput" name="getinput" type="search" placeholder="Search">
+        <!--button class="btn btn-primary btn-sm" type="submit">Search</button-->
+      </form>
+      {% endif %}
+      
+      <span class="navbar-button">
+        <a class="nav-link" href="{{ url_for('welcome') }}">Log Out</a>
+    </span>
     </nav>
 
     <!-- Welcome -->
@@ -48,11 +74,16 @@
     <p class="lead">
       Explore the huge library of books at your own ease at any time on your device :)<br>
     </p>
-    <hr class="my-4">
-    <p>
-      Register Yourself ASAP!..
-    </p>
-    <p class="lead">
-      <a class="btn btn-primary btn-sm" href="{{ url_for('welcome') }}" role="button">Log Out</a>
-    </p>
+    <hr class="my-4"> 
+    <!--p class="lead">
+      {% if session["user"] %}
+      <form action="/search" method="POST" class="form-inline">
+        <input class="form-control form-control-sm" id="getinput" name="getinput" type="search" placeholder="Search">
+       
+      </form>
+      {% endif %}
+    </p-->
+  </div>
+
+
 {% endblock %}

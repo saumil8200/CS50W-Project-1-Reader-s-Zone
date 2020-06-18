@@ -1,0 +1,141 @@
+{% extends "layout.html" %}
+
+{% block head %}
+  <title>Reader's Zone</title>
+
+      <!-- Fonts -->
+      <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@500&display=swap" rel="stylesheet"> 
+
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      
+        <!-- Font Awesome Icon Library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="{{ url_for('static', filename='books.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+  
+  {% endblock %}
+
+{% block body %}
+
+
+<main>
+  <section>
+        <div class="section">
+          <div>
+            <!--
+                =====     List Items Of Book From Search    =====
+            -->
+            {% if session["val"] %}
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Isbn</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Author</th>
+                  <th scope="col">Year</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for val in data %}  
+                <tr>         
+                  <th scope="row"><a href="{{ url_for('book', id=val.isbn) }}">{{val.isbn}}</a></th>
+                  <td><a href="{{ url_for('book', id=val.isbn) }}">{{val.title}}</a></td>
+                  <td>{{val.author}}</td>
+                  <td>{{val.year}}</td>
+                </tr>
+                {% endfor %}             
+              </tbody>
+            </table>
+            {% endif %}
+
+            <!--
+                =====   Books Review And Rating Portion   =====
+            -->
+            {% if session["book"] %}
+
+            <div>
+              <div>
+                  <div>
+                      <div>
+                          <h1><p>Title : {{ book.title }} </p></h1>
+                      </div>
+                  </div>
+                  <div>
+                    <!--ul class="list-group list-group-horizontal">
+                      <li class="list-group-item">ISBN</li>
+                      <li class="list-group-item">Author</li>
+                      <li class="list-group-item">Year</li>
+                      <li class="list-group-item">Total Ratings</li>
+                      <li class="list-group-item">Average Ratings</li>
+                    </ul-->
+                    <div class="card border-dark mb-3">
+                      <div class="card-header"><p class="card-text">ISBN : {{ book.isbn }}</p></div>
+                      <div class="card-header"><p class="card-text">Author : {{ book.author }}</p> </div>
+                      <div class="card-header"><p class="card-text">Year : {{ book.year }}</p></div>
+                      <div class="card-header"><p class="card-text">Total Ratings : {{ api["books"][0]["reviews_count"] }}</p> </div>
+                      <div class="card-header"><p class="card-text">Average Ratings : {{ api["books"][0]["average_rating"] }}</p></div>
+                    </div> 
+                      <!--  Rating and Review Form  -->
+                      <div>
+                        <form action="" method="POST">
+                          <div class="form-group">
+                            <input type="hidden" name="post_id" value="{{book.isbn}}">
+                            <label for="exampleFormControlTextarea1">Review The Book:</label><br>
+                            <!--select class="form-control" id="exampleFormControlSelect1" name="rating">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select-->
+                            <input type="radio" id="rate1" name="rating" value="1">
+                            <label for="rate1">1</label>
+                            <input type="radio" id="rate2" name="rating" value="2">
+                            <label for="rate2">2</label>  
+                            <input type="radio" id="rate3" name="rating" value="3">
+                            <label for="rate3">3</label>
+                            <input type="radio" id="rate4" name="rating" value="4">
+                            <label for="rate4">4</label>
+                            <input type="radio" id="rate5" name="rating" value="5">
+                            <label for="rate5">5</label><br>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="review" id="exampleFormControlTextarea1" maxlength="300" placeholder="Type Book Reviews Here!" rows="3" required></textarea>
+                          </div>
+                          <button type="submit" value="Submit">Submit</button>
+                        </form>
+                      </div>
+                      <hr width="100%">
+                      <div style="height: 150px;">
+                        <h5>Your Reviews</h5>
+                        <!-- If Display Reviews And Ratings -->
+                        {% if session["review"] %}
+
+                        <div>
+                            <div>
+                              <a>{{ comments.username.capitalize() }}</a>  Rated This Book {{ comments.rating }} of 5
+                            </div>
+                            <div>
+                              <span>Reviews:</span>
+                                {{ comments.review }}
+                            </div>
+                        </div>
+
+                        {% endif %}
+
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+            {% endif %}
+          </div>
+        </div>
+      </section>
+    </main>
+
+{% endblock %}
